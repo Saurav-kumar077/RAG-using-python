@@ -263,9 +263,28 @@ def ask(question: str, index, metadata):
 
 # Entry point
 
+# if __name__ == "__main__":
+#     index, metadata = build_or_update_index()
+#     print(f"\nIndex ready — {index.ntotal} chunks total.\n")
+
+#     question = "Where does Anaya Meera reside?"
+#     ask(question, index, metadata) 
+
 if __name__ == "__main__":
     index, metadata = build_or_update_index()
-    print(f"\nIndex ready — {index.ntotal} chunks total.\n")
 
-    question = "Where does Anaya Meera reside?"
-    ask(question, index, metadata) 
+    print(f"\n✅ RAG index ready — {index.ntotal} chunks loaded.")
+    print("📄 Ask questions about your documents.")
+    print("Type 'exit' to quit.\n")
+
+    while True:
+        question = input("You: ").strip()
+
+        if question.lower() == "exit":
+            print("Goodbye!")
+            break
+
+        if not question:
+            continue
+
+        ask(question, index, metadata)
